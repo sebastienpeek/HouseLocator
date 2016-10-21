@@ -1,0 +1,537 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		ED8F09CF1DB9FF3900EDEEEB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = ED8F09CE1DB9FF3900EDEEEB /* main.m */; };
+		ED8F09D21DB9FF3900EDEEEB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ED8F09D11DB9FF3900EDEEEB /* AppDelegate.m */; };
+		ED8F09D51DB9FF3900EDEEEB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED8F09D41DB9FF3900EDEEEB /* ViewController.m */; };
+		ED8F09D81DB9FF3900EDEEEB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED8F09D61DB9FF3900EDEEEB /* Main.storyboard */; };
+		ED8F09DA1DB9FF3900EDEEEB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED8F09D91DB9FF3900EDEEEB /* Assets.xcassets */; };
+		ED8F09DD1DB9FF3900EDEEEB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED8F09DB1DB9FF3900EDEEEB /* LaunchScreen.storyboard */; };
+		ED8F09E81DB9FF3900EDEEEB /* HouseLocatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = ED8F09E71DB9FF3900EDEEEB /* HouseLocatorTests.m */; };
+		ED8F09F31DB9FF3900EDEEEB /* HouseLocatorUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = ED8F09F21DB9FF3900EDEEEB /* HouseLocatorUITests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		ED8F09E41DB9FF3900EDEEEB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ED8F09C21DB9FF3900EDEEEB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = ED8F09C91DB9FF3900EDEEEB;
+			remoteInfo = HouseLocator;
+		};
+		ED8F09EF1DB9FF3900EDEEEB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ED8F09C21DB9FF3900EDEEEB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = ED8F09C91DB9FF3900EDEEEB;
+			remoteInfo = HouseLocator;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		ED8F09CA1DB9FF3900EDEEEB /* HouseLocator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HouseLocator.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED8F09CE1DB9FF3900EDEEEB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		ED8F09D01DB9FF3900EDEEEB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		ED8F09D11DB9FF3900EDEEEB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		ED8F09D31DB9FF3900EDEEEB /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		ED8F09D41DB9FF3900EDEEEB /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		ED8F09D71DB9FF3900EDEEEB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		ED8F09D91DB9FF3900EDEEEB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		ED8F09DC1DB9FF3900EDEEEB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		ED8F09DE1DB9FF3900EDEEEB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ED8F09E31DB9FF3900EDEEEB /* HouseLocatorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HouseLocatorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED8F09E71DB9FF3900EDEEEB /* HouseLocatorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HouseLocatorTests.m; sourceTree = "<group>"; };
+		ED8F09E91DB9FF3900EDEEEB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ED8F09EE1DB9FF3900EDEEEB /* HouseLocatorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HouseLocatorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED8F09F21DB9FF3900EDEEEB /* HouseLocatorUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HouseLocatorUITests.m; sourceTree = "<group>"; };
+		ED8F09F41DB9FF3900EDEEEB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		ED8F09C71DB9FF3900EDEEEB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ED8F09E01DB9FF3900EDEEEB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ED8F09EB1DB9FF3900EDEEEB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		ED8F09C11DB9FF3900EDEEEB = {
+			isa = PBXGroup;
+			children = (
+				ED8F09CC1DB9FF3900EDEEEB /* HouseLocator */,
+				ED8F09E61DB9FF3900EDEEEB /* HouseLocatorTests */,
+				ED8F09F11DB9FF3900EDEEEB /* HouseLocatorUITests */,
+				ED8F09CB1DB9FF3900EDEEEB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		ED8F09CB1DB9FF3900EDEEEB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				ED8F09CA1DB9FF3900EDEEEB /* HouseLocator.app */,
+				ED8F09E31DB9FF3900EDEEEB /* HouseLocatorTests.xctest */,
+				ED8F09EE1DB9FF3900EDEEEB /* HouseLocatorUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		ED8F09CC1DB9FF3900EDEEEB /* HouseLocator */ = {
+			isa = PBXGroup;
+			children = (
+				ED8F09D01DB9FF3900EDEEEB /* AppDelegate.h */,
+				ED8F09D11DB9FF3900EDEEEB /* AppDelegate.m */,
+				ED8F09D31DB9FF3900EDEEEB /* ViewController.h */,
+				ED8F09D41DB9FF3900EDEEEB /* ViewController.m */,
+				ED8F09D61DB9FF3900EDEEEB /* Main.storyboard */,
+				ED8F09D91DB9FF3900EDEEEB /* Assets.xcassets */,
+				ED8F09DB1DB9FF3900EDEEEB /* LaunchScreen.storyboard */,
+				ED8F09DE1DB9FF3900EDEEEB /* Info.plist */,
+				ED8F09CD1DB9FF3900EDEEEB /* Supporting Files */,
+			);
+			path = HouseLocator;
+			sourceTree = "<group>";
+		};
+		ED8F09CD1DB9FF3900EDEEEB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				ED8F09CE1DB9FF3900EDEEEB /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		ED8F09E61DB9FF3900EDEEEB /* HouseLocatorTests */ = {
+			isa = PBXGroup;
+			children = (
+				ED8F09E71DB9FF3900EDEEEB /* HouseLocatorTests.m */,
+				ED8F09E91DB9FF3900EDEEEB /* Info.plist */,
+			);
+			path = HouseLocatorTests;
+			sourceTree = "<group>";
+		};
+		ED8F09F11DB9FF3900EDEEEB /* HouseLocatorUITests */ = {
+			isa = PBXGroup;
+			children = (
+				ED8F09F21DB9FF3900EDEEEB /* HouseLocatorUITests.m */,
+				ED8F09F41DB9FF3900EDEEEB /* Info.plist */,
+			);
+			path = HouseLocatorUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		ED8F09C91DB9FF3900EDEEEB /* HouseLocator */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ED8F09F71DB9FF3900EDEEEB /* Build configuration list for PBXNativeTarget "HouseLocator" */;
+			buildPhases = (
+				ED8F09C61DB9FF3900EDEEEB /* Sources */,
+				ED8F09C71DB9FF3900EDEEEB /* Frameworks */,
+				ED8F09C81DB9FF3900EDEEEB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HouseLocator;
+			productName = HouseLocator;
+			productReference = ED8F09CA1DB9FF3900EDEEEB /* HouseLocator.app */;
+			productType = "com.apple.product-type.application";
+		};
+		ED8F09E21DB9FF3900EDEEEB /* HouseLocatorTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ED8F09FA1DB9FF3900EDEEEB /* Build configuration list for PBXNativeTarget "HouseLocatorTests" */;
+			buildPhases = (
+				ED8F09DF1DB9FF3900EDEEEB /* Sources */,
+				ED8F09E01DB9FF3900EDEEEB /* Frameworks */,
+				ED8F09E11DB9FF3900EDEEEB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				ED8F09E51DB9FF3900EDEEEB /* PBXTargetDependency */,
+			);
+			name = HouseLocatorTests;
+			productName = HouseLocatorTests;
+			productReference = ED8F09E31DB9FF3900EDEEEB /* HouseLocatorTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		ED8F09ED1DB9FF3900EDEEEB /* HouseLocatorUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ED8F09FD1DB9FF3900EDEEEB /* Build configuration list for PBXNativeTarget "HouseLocatorUITests" */;
+			buildPhases = (
+				ED8F09EA1DB9FF3900EDEEEB /* Sources */,
+				ED8F09EB1DB9FF3900EDEEEB /* Frameworks */,
+				ED8F09EC1DB9FF3900EDEEEB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				ED8F09F01DB9FF3900EDEEEB /* PBXTargetDependency */,
+			);
+			name = HouseLocatorUITests;
+			productName = HouseLocatorUITests;
+			productReference = ED8F09EE1DB9FF3900EDEEEB /* HouseLocatorUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		ED8F09C21DB9FF3900EDEEEB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = prototype;
+				TargetAttributes = {
+					ED8F09C91DB9FF3900EDEEEB = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 75U8G6JJG3;
+						ProvisioningStyle = Automatic;
+					};
+					ED8F09E21DB9FF3900EDEEEB = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 75U8G6JJG3;
+						ProvisioningStyle = Automatic;
+						TestTargetID = ED8F09C91DB9FF3900EDEEEB;
+					};
+					ED8F09ED1DB9FF3900EDEEEB = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 75U8G6JJG3;
+						ProvisioningStyle = Automatic;
+						TestTargetID = ED8F09C91DB9FF3900EDEEEB;
+					};
+				};
+			};
+			buildConfigurationList = ED8F09C51DB9FF3900EDEEEB /* Build configuration list for PBXProject "HouseLocator" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = ED8F09C11DB9FF3900EDEEEB;
+			productRefGroup = ED8F09CB1DB9FF3900EDEEEB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				ED8F09C91DB9FF3900EDEEEB /* HouseLocator */,
+				ED8F09E21DB9FF3900EDEEEB /* HouseLocatorTests */,
+				ED8F09ED1DB9FF3900EDEEEB /* HouseLocatorUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		ED8F09C81DB9FF3900EDEEEB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ED8F09DD1DB9FF3900EDEEEB /* LaunchScreen.storyboard in Resources */,
+				ED8F09DA1DB9FF3900EDEEEB /* Assets.xcassets in Resources */,
+				ED8F09D81DB9FF3900EDEEEB /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ED8F09E11DB9FF3900EDEEEB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ED8F09EC1DB9FF3900EDEEEB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		ED8F09C61DB9FF3900EDEEEB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ED8F09D51DB9FF3900EDEEEB /* ViewController.m in Sources */,
+				ED8F09D21DB9FF3900EDEEEB /* AppDelegate.m in Sources */,
+				ED8F09CF1DB9FF3900EDEEEB /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ED8F09DF1DB9FF3900EDEEEB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ED8F09E81DB9FF3900EDEEEB /* HouseLocatorTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ED8F09EA1DB9FF3900EDEEEB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ED8F09F31DB9FF3900EDEEEB /* HouseLocatorUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		ED8F09E51DB9FF3900EDEEEB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = ED8F09C91DB9FF3900EDEEEB /* HouseLocator */;
+			targetProxy = ED8F09E41DB9FF3900EDEEEB /* PBXContainerItemProxy */;
+		};
+		ED8F09F01DB9FF3900EDEEEB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = ED8F09C91DB9FF3900EDEEEB /* HouseLocator */;
+			targetProxy = ED8F09EF1DB9FF3900EDEEEB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		ED8F09D61DB9FF3900EDEEEB /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ED8F09D71DB9FF3900EDEEEB /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		ED8F09DB1DB9FF3900EDEEEB /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ED8F09DC1DB9FF3900EDEEEB /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		ED8F09F51DB9FF3900EDEEEB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		ED8F09F61DB9FF3900EDEEEB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		ED8F09F81DB9FF3900EDEEEB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 75U8G6JJG3;
+				INFOPLIST_FILE = HouseLocator/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.proto.HouseLocator;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		ED8F09F91DB9FF3900EDEEEB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 75U8G6JJG3;
+				INFOPLIST_FILE = HouseLocator/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.proto.HouseLocator;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		ED8F09FB1DB9FF3900EDEEEB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 75U8G6JJG3;
+				INFOPLIST_FILE = HouseLocatorTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.proto.HouseLocatorTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HouseLocator.app/HouseLocator";
+			};
+			name = Debug;
+		};
+		ED8F09FC1DB9FF3900EDEEEB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 75U8G6JJG3;
+				INFOPLIST_FILE = HouseLocatorTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.proto.HouseLocatorTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HouseLocator.app/HouseLocator";
+			};
+			name = Release;
+		};
+		ED8F09FE1DB9FF3900EDEEEB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = 75U8G6JJG3;
+				INFOPLIST_FILE = HouseLocatorUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.proto.HouseLocatorUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = HouseLocator;
+			};
+			name = Debug;
+		};
+		ED8F09FF1DB9FF3900EDEEEB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = 75U8G6JJG3;
+				INFOPLIST_FILE = HouseLocatorUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.proto.HouseLocatorUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = HouseLocator;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		ED8F09C51DB9FF3900EDEEEB /* Build configuration list for PBXProject "HouseLocator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ED8F09F51DB9FF3900EDEEEB /* Debug */,
+				ED8F09F61DB9FF3900EDEEEB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ED8F09F71DB9FF3900EDEEEB /* Build configuration list for PBXNativeTarget "HouseLocator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ED8F09F81DB9FF3900EDEEEB /* Debug */,
+				ED8F09F91DB9FF3900EDEEEB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		ED8F09FA1DB9FF3900EDEEEB /* Build configuration list for PBXNativeTarget "HouseLocatorTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ED8F09FB1DB9FF3900EDEEEB /* Debug */,
+				ED8F09FC1DB9FF3900EDEEEB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		ED8F09FD1DB9FF3900EDEEEB /* Build configuration list for PBXNativeTarget "HouseLocatorUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ED8F09FE1DB9FF3900EDEEEB /* Debug */,
+				ED8F09FF1DB9FF3900EDEEEB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = ED8F09C21DB9FF3900EDEEEB /* Project object */;
+}
