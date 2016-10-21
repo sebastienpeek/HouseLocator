@@ -35,5 +35,14 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - HLLocationManagerDelegate Methods
+
+- (void)didDetermineHouseLocation:(CLLocation *)location {
+    
+    if (location != nil) {
+        NSLog(@"House Location: %@", location);
+    }
+    
+}
 
 @end

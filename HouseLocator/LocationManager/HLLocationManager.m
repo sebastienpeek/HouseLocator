@@ -53,15 +53,30 @@
 - (void) locationManager:(CLLocationManager *)manager
       didUpdateLocations:(NSArray *)locations {
     
-    self.lastLocation = [locations lastObject];
-    
     // Here we need to determine whether or not they're at home, so let's look into a few ways.
     // First is what was recommended, time based option, ie late at night.
     
+    NSDate *currentDate = [NSDate new];
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSInteger hour = [calendar component:NSCalendarUnitHour
+                                fromDate:currentDate];
     
-    if ([self.delegate respondsToSelector:@selector(didDetermineHouseLocation:)]) {
+    bool isNight = ((hour >= 22) || (hour < 7));
+    bool isDay = ((hour >= 7) && (hour <= 21));
+    
+    if (isDay) {
+        NSLog(@"Day time: %ld", (long)hour);
+    } else if (isNight) {
+        [self stop];
         
+        self.lastLocation = [locations lastObject];
+        if ([self.delegate respondsToSelector:@selector(didDetermineHouseLocation:)]) {
+            [self.delegate didDetermineHouseLocation:self.lastLocation];
+        }
+    } else {
+        NSLog(@"Wut");
     }
+    
 }
 
 - (void) locationManager:(CLLocationManager *)manager
