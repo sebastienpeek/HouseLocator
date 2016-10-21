@@ -68,13 +68,13 @@
         NSLog(@"Day time: %ld", (long)hour);
     } else if (isNight) {
         [self stop];
-        
         self.lastLocation = [locations lastObject];
-        if ([self.delegate respondsToSelector:@selector(didDetermineHouseLocation:)]) {
-            [self.delegate didDetermineHouseLocation:self.lastLocation];
-        }
     } else {
         NSLog(@"Wut");
+    }
+    
+    if ([self.delegate respondsToSelector:@selector(didDetermineHouseLocation:)]) {
+        [self.delegate didDetermineHouseLocation:self.lastLocation];
     }
     
 }
