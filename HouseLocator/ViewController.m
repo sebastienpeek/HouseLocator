@@ -8,7 +8,11 @@
 
 #import "ViewController.h"
 
-@interface ViewController ()
+#import "HLLocationManager.h"
+
+@interface ViewController () <HLLocationManagerDelegate>
+
+@property (strong, nonatomic) HLLocationManager *manager;
 
 @end
 
@@ -17,6 +21,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    
+    self.manager = [HLLocationManager shared];
+    [self.manager setDelegate:self];
+    
+    [self.manager start];
+    
 }
 
 

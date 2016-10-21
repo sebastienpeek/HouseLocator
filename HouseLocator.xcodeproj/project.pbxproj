@@ -15,6 +15,8 @@
 		ED8F09DD1DB9FF3900EDEEEB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED8F09DB1DB9FF3900EDEEEB /* LaunchScreen.storyboard */; };
 		ED8F09E81DB9FF3900EDEEEB /* HouseLocatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = ED8F09E71DB9FF3900EDEEEB /* HouseLocatorTests.m */; };
 		ED8F09F31DB9FF3900EDEEEB /* HouseLocatorUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = ED8F09F21DB9FF3900EDEEEB /* HouseLocatorUITests.m */; };
+		ED8F0A031DBA012700EDEEEB /* HLLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ED8F0A021DBA012700EDEEEB /* HLLocationManager.m */; };
+		ED8F0A061DBA01C500EDEEEB /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED8F0A051DBA01C500EDEEEB /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,9 @@
 		ED8F09EE1DB9FF3900EDEEEB /* HouseLocatorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HouseLocatorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED8F09F21DB9FF3900EDEEEB /* HouseLocatorUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HouseLocatorUITests.m; sourceTree = "<group>"; };
 		ED8F09F41DB9FF3900EDEEEB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ED8F0A011DBA012700EDEEEB /* HLLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLLocationManager.h; sourceTree = "<group>"; };
+		ED8F0A021DBA012700EDEEEB /* HLLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLLocationManager.m; sourceTree = "<group>"; };
+		ED8F0A051DBA01C500EDEEEB /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED8F0A061DBA01C500EDEEEB /* CoreLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,6 +91,7 @@
 				ED8F09E61DB9FF3900EDEEEB /* HouseLocatorTests */,
 				ED8F09F11DB9FF3900EDEEEB /* HouseLocatorUITests */,
 				ED8F09CB1DB9FF3900EDEEEB /* Products */,
+				ED8F0A041DBA01C500EDEEEB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -101,6 +108,7 @@
 		ED8F09CC1DB9FF3900EDEEEB /* HouseLocator */ = {
 			isa = PBXGroup;
 			children = (
+				ED8F0A001DBA011700EDEEEB /* LocationManager */,
 				ED8F09D01DB9FF3900EDEEEB /* AppDelegate.h */,
 				ED8F09D11DB9FF3900EDEEEB /* AppDelegate.m */,
 				ED8F09D31DB9FF3900EDEEEB /* ViewController.h */,
@@ -138,6 +146,23 @@
 				ED8F09F41DB9FF3900EDEEEB /* Info.plist */,
 			);
 			path = HouseLocatorUITests;
+			sourceTree = "<group>";
+		};
+		ED8F0A001DBA011700EDEEEB /* LocationManager */ = {
+			isa = PBXGroup;
+			children = (
+				ED8F0A011DBA012700EDEEEB /* HLLocationManager.h */,
+				ED8F0A021DBA012700EDEEEB /* HLLocationManager.m */,
+			);
+			path = LocationManager;
+			sourceTree = "<group>";
+		};
+		ED8F0A041DBA01C500EDEEEB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				ED8F0A051DBA01C500EDEEEB /* CoreLocation.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -209,6 +234,11 @@
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = 75U8G6JJG3;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 0;
+							};
+						};
 					};
 					ED8F09E21DB9FF3900EDEEEB = {
 						CreatedOnToolsVersion = 8.0;
@@ -278,6 +308,7 @@
 			files = (
 				ED8F09D51DB9FF3900EDEEEB /* ViewController.m in Sources */,
 				ED8F09D21DB9FF3900EDEEEB /* AppDelegate.m in Sources */,
+				ED8F0A031DBA012700EDEEEB /* HLLocationManager.m in Sources */,
 				ED8F09CF1DB9FF3900EDEEEB /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
