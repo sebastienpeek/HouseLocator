@@ -14,6 +14,9 @@
 
 @property (strong, nonatomic) HLLocationManager *manager;
 
+@property (weak, nonatomic) IBOutlet UILabel *lblLocation;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+
 @end
 
 @implementation ViewController
@@ -26,6 +29,7 @@
     [self.manager setDelegate:self];
     
     [self.manager start];
+    [self.activityIndicator startAnimating];
     
 }
 
@@ -39,8 +43,12 @@
 
 - (void)didDetermineHouseLocation:(CLLocation *)location {
     
+    [self.activityIndicator stopAnimating];
+    
     if (location != nil) {
         NSLog(@"House Location: %@", location);
+    } else {
+        [self.lblLocation setText:@"House not located, try later!"];
     }
     
 }
