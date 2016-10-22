@@ -13,6 +13,9 @@
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) CLLocation *lastLocation;
 
+@property (strong, nonatomic) NSCalendar *calendar;
+@property (strong, nonatomic) NSDateFormatter *dateFormatter;
+
 @end
 
 @implementation HLLocationManager
@@ -33,6 +36,10 @@
     if (self = [super init]) {
         self.locationManager = [[CLLocationManager alloc] init];
         [self.locationManager setDelegate:self];
+        
+        self.calendar = [NSCalendar currentCalendar];
+        self.dateFormatter = [NSDateFormatter new];
+        [self.dateFormatter setDateFormat:@"EE"];
     }
     
     return self;
@@ -60,9 +67,10 @@
     // necessarily Fridays or Saturdays.
     
     NSDate *currentDate = [NSDate new];
-    NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSInteger hour = [calendar component:NSCalendarUnitHour
+    NSInteger hour = [self.calendar component:NSCalendarUnitHour
                                 fromDate:currentDate];
+    NSString *dayOfWeek = [self.dateFormatter stringFromDate:currentDate];
+    bool isAllowedNight = (![dayOfWeek isEqual:@"Sat" ] || ![dayOfWeek  isEqual:@"Fri"]);
     
     bool isNight = ((hour >= 22) || (hour < 7));
     bool isDay = ((hour >= 7) && (hour <= 21));
@@ -70,8 +78,8 @@
     if (isDay) {
         // It's day time, should we stop checking for location updates? Probably.
         [self stop];
-    } else if (isNight) {
-        // It's night time, we should save the last location in the locations array.
+    } else if (isNight && isAllowedNight) {
+        // It's night time during the week, we should save the last location in the locations array.
         [self stop];
         self.lastLocation = [locations lastObject];
     } else {
@@ -88,7 +96,7 @@
         didFailWithError:(NSError *)error {
     
     if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied) {
-        NSLog(@"User has not denied location access");
+        NSLog(@"User has denied location access.");
     } else {
         NSLog(@"locationManager:didFailWithError: %@", error);
     }
