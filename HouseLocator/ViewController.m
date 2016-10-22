@@ -46,7 +46,11 @@
     [self.activityIndicator stopAnimating];
     
     if (location != nil) {
-        NSLog(@"House Location: %@", location);
+        float lat = location.coordinate.latitude;
+        float lon = location.coordinate.longitude;
+        
+        NSString *houseLocation = [NSString stringWithFormat:@"Lat: %f, Long: %f", lat, lon];
+        [self.lblLocation setText:houseLocation];
     } else {
         [self.lblLocation setText:@"House not located, try later!"];
     }
