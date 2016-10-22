@@ -56,6 +56,9 @@
     // Here we need to determine whether or not they're at home, so let's look into a few ways.
     // First is what was recommended, time based option, ie late at night.
     
+    // Second option would to be only check on certain days at night. So during the week, not
+    // necessarily Fridays or Saturdays.
+    
     NSDate *currentDate = [NSDate new];
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSInteger hour = [calendar component:NSCalendarUnitHour
@@ -65,14 +68,16 @@
     bool isDay = ((hour >= 7) && (hour <= 21));
     
     if (isDay) {
-        NSLog(@"Day time: %ld", (long)hour);
+        // It's day time, should we stop checking for location updates? Probably.
+        [self stop];
     } else if (isNight) {
+        // It's night time, we should save the last location in the locations array.
         [self stop];
         self.lastLocation = [locations lastObject];
     } else {
-        NSLog(@"Wut");
+       // Handle this gracefully.
     }
-    
+
     if ([self.delegate respondsToSelector:@selector(didDetermineHouseLocation:)]) {
         [self.delegate didDetermineHouseLocation:self.lastLocation];
     }
@@ -83,9 +88,9 @@
         didFailWithError:(NSError *)error {
     
     if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied) {
-        
+        NSLog(@"User has not denied location access");
     } else {
-        
+        NSLog(@"locationManager:didFailWithError: %@", error);
     }
     
 }
