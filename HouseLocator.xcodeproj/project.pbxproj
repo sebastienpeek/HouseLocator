@@ -236,7 +236,7 @@
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
-								enabled = 0;
+								enabled = 1;
 							};
 						};
 					};
@@ -545,6 +545,7 @@
 				ED8F09F91DB9FF3900EDEEEB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		ED8F09FA1DB9FF3900EDEEEB /* Build configuration list for PBXNativeTarget "HouseLocatorTests" */ = {
 			isa = XCConfigurationList;
@@ -553,6 +554,7 @@
 				ED8F09FC1DB9FF3900EDEEEB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		ED8F09FD1DB9FF3900EDEEEB /* Build configuration list for PBXNativeTarget "HouseLocatorUITests" */ = {
 			isa = XCConfigurationList;
@@ -561,6 +563,7 @@
 				ED8F09FF1DB9FF3900EDEEEB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

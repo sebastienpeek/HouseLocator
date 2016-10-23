@@ -22,6 +22,10 @@
 	<true/>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>HouseLocator needs to use your location to determine where you live!</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>location</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
