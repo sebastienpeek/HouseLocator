@@ -19,7 +19,6 @@
 @property (strong, nonatomic) NSDateFormatter *dateFormatter;
 
 @property (strong, nonatomic) NSMutableDictionary *locationsForDays;
-@property BOOL houseLocationFound;
 
 @end
 
@@ -111,7 +110,6 @@
     // This result is a best guess, believing that the user is within their house at the times we are
     // getting the location data in locationManager:didUpdateLocations.
     
-    self.houseLocationFound = YES;
     self.houseLocation = [[CLLocation alloc] initWithCoordinate:result
                                                        altitude:0
                                              horizontalAccuracy:kCLLocationAccuracyHundredMeters
@@ -137,8 +135,8 @@
     NSInteger hour = [self.calendar component:NSCalendarUnitHour
                                      fromDate:currentDate];
     
-    //    bool isDay = ((hour >= 7) && (hour <= 21));
-    bool isNight = ((hour >= 22) || (hour < 7));
+//        bool isDay = ((hour >= 7) && (hour <= 21));
+    bool isNight = ((hour >= 22) || (hour < 6));
     
     NSString *dayOfWeek = [self.dateFormatter stringFromDate:currentDate];
     bool shouldTrackLocation = (![dayOfWeek isEqual:@"Sat" ] &&
@@ -160,12 +158,13 @@
             // Now we should check whether we have enough days to determine house location.
             if ([[self.locationsForDays allKeys] count] >= 3) {
                 [self stop];
-                NSLog(@"amount of nights required.");
                 [self determineHouseLocation];
             } else {
                 NSLog(@"need more nights worth of data!");
             }
         } else {
+            // Another way to minimise bad location data is to only record the data if the coordinates
+            // are within say, twenty metres of each other.
             NSLog(@"Should track location: %@", [locations lastObject]);
             [locationsForDayOfWeek addObject:[locations lastObject]];
             [self.locationsForDays setObject:locationsForDayOfWeek forKey:dayOfWeek];
@@ -178,9 +177,8 @@
         
     } else {
         // Do a check for whether we can determine house location
-        if ([[self.locationsForDays allKeys] count] >= 3) {
+        if ([[self.locationsForDays allKeys] count] >= 4) {
             [self stop];
-            NSLog(@"amount of nights required.");
             [self determineHouseLocation];
         } else {
             NSLog(@"need more nights worth of data!");
