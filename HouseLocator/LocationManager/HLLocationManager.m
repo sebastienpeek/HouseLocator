@@ -6,15 +6,17 @@
 //  Copyright © 2016 prototype. All rights reserved.
 //
 
+#import <UIKit/UIKit.h>
 #import "HLLocationManager.h"
 
 @interface HLLocationManager() <CLLocationManagerDelegate>
 
 @property (strong, nonatomic) CLLocationManager *locationManager;
-@property (strong, nonatomic) CLLocation *lastLocation;
+@property (strong, nonatomic) CLLocation *houseLocation;
 
 @property (strong, nonatomic) NSCalendar *calendar;
 @property (strong, nonatomic) NSDateFormatter *dateFormatter;
+@property (strong, nonatomic) NSMutableArray *locations;
 
 @end
 
@@ -34,12 +36,16 @@
 - (id) init {
     
     if (self = [super init]) {
-        self.locationManager = [[CLLocationManager alloc] init];
+        self.locationManager = [CLLocationManager new];
         [self.locationManager setDelegate:self];
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
+        self.locationManager.pausesLocationUpdatesAutomatically = NO;
         
         self.calendar = [NSCalendar currentCalendar];
         self.dateFormatter = [NSDateFormatter new];
         [self.dateFormatter setDateFormat:@"EE"];
+        
+        self.locations = [NSMutableArray new];
     }
     
     return self;
@@ -54,6 +60,14 @@
     [self.locationManager stopUpdatingLocation];
 }
 
+- (void) determineHouseLocation {
+    
+    NSLog(@"Locations: %@", self.locations);
+    
+    if ([self.delegate respondsToSelector:@selector(didDetermineHouseLocation:)]) {
+        [self.delegate didDetermineHouseLocation:self.houseLocation];
+    }
+}
 
 #pragma mark - CLLocationManagerDelegate Methods
 
@@ -61,18 +75,36 @@
       didUpdateLocations:(NSArray *)locations {
     
     // Here we need to determine whether or not they're at home, so let's look into a few ways.
-    // First is what was recommended, time based option, ie late at night.
+    // First is what was recommended, time based option, ie late at night. We only want to record
+    // updates then.
+    
+    // Implementation for background tracking. No persistence...
+    NSDate *currentDate = [NSDate new];
+    NSInteger hour = [self.calendar component:NSCalendarUnitHour
+                                     fromDate:currentDate];
+    
+    bool isNight = ((hour >= 22) || (hour < 7));
+    if (isNight) {
+        [self.locations addObject:[locations lastObject]];
+    }
+    
+    // So now that we're getting location updates at night time and just adding them to the array,
+    // we should probably start filtering them to guess the users house location.
+    if ([self.locations count] > 100) {
+        NSLog(@"We should have enough location objects to determine house...");
+        [self determineHouseLocation];
+    } else {
+        if ([self.delegate respondsToSelector:@selector(didDetermineHouseLocation:)]) {
+            [self.delegate didDetermineHouseLocation:nil];
+        }
+    }
     
     // Second option would to be only check on certain days at night. So during the week, not
     // necessarily Fridays or Saturdays.
     
-    NSDate *currentDate = [NSDate new];
-    NSInteger hour = [self.calendar component:NSCalendarUnitHour
-                                fromDate:currentDate];
-    NSString *dayOfWeek = [self.dateFormatter stringFromDate:currentDate];
+    /*
+     NSString *dayOfWeek = [self.dateFormatter stringFromDate:currentDate];
     bool isAllowedNight = (![dayOfWeek isEqual:@"Sat" ] || ![dayOfWeek  isEqual:@"Fri"]);
-    
-    bool isNight = ((hour >= 22) || (hour < 7));
     bool isDay = ((hour >= 7) && (hour <= 21));
     
     if (isDay) {
@@ -81,15 +113,17 @@
     } else if (isNight && isAllowedNight) {
         // It's night time during the week, we should save the last location in the locations array.
         [self stop];
-        self.lastLocation = [locations lastObject];
+        self.houseLocation = [locations lastObject];
     } else {
        // Handle this gracefully.
     }
-
-    if ([self.delegate respondsToSelector:@selector(didDetermineHouseLocation:)]) {
-        [self.delegate didDetermineHouseLocation:self.lastLocation];
-    }
+     */
     
+    
+    
+    if (UIApplication.sharedApplication.applicationState == UIApplicationStateBackground) {
+        NSLog(@"App is backgrounded. New location is %@", [locations lastObject]);
+    }
 }
 
 - (void) locationManager:(CLLocationManager *)manager
