@@ -42,6 +42,7 @@
         [self.locationManager setDelegate:self];
         self.locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
         self.locationManager.pausesLocationUpdatesAutomatically = NO;
+        self.locationManager.allowsBackgroundLocationUpdates = YES;
         
         self.calendar = [NSCalendar currentCalendar];
         self.dateFormatter = [NSDateFormatter new];
@@ -135,13 +136,13 @@
     NSInteger hour = [self.calendar component:NSCalendarUnitHour
                                      fromDate:currentDate];
     
-//        bool isDay = ((hour >= 7) && (hour <= 21));
+    bool isDay = ((hour >= 7) && (hour <= 21));
     bool isNight = ((hour >= 22) || (hour < 6));
     
     NSString *dayOfWeek = [self.dateFormatter stringFromDate:currentDate];
     bool shouldTrackLocation = (![dayOfWeek isEqual:@"Sat" ] &&
                                 ![dayOfWeek  isEqual:@"Fri"] &&
-                                isNight);
+                                isDay);
   
     if (shouldTrackLocation) {
         
