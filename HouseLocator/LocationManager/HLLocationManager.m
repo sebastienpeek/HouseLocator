@@ -64,6 +64,15 @@
     
     NSLog(@"Locations: %@", self.locations);
     
+    NSMutableArray *potentialHouseLocations = [NSMutableArray new];
+    
+    // We want to get a tally of how many times a location has been sent up, within a range of x feet.
+    for (CLLocation *location in self.locations) {
+        if ([potentialHouseLocations containsObject:location]) {
+            
+        }
+    }
+    
     if ([self.delegate respondsToSelector:@selector(didDetermineHouseLocation:)]) {
         [self.delegate didDetermineHouseLocation:self.houseLocation];
     }
@@ -83,14 +92,16 @@
     NSInteger hour = [self.calendar component:NSCalendarUnitHour
                                      fromDate:currentDate];
     
+    bool isDay = ((hour >= 7) && (hour <= 21));
     bool isNight = ((hour >= 22) || (hour < 7));
-    if (isNight) {
+    if (isDay) {
         [self.locations addObject:[locations lastObject]];
     }
     
     // So now that we're getting location updates at night time and just adding them to the array,
     // we should probably start filtering them to guess the users house location.
-    if ([self.locations count] > 100) {
+    if ([self.locations count] > 20) {
+        [self stop];
         NSLog(@"We should have enough location objects to determine house...");
         [self determineHouseLocation];
     } else {
@@ -105,7 +116,7 @@
     /*
      NSString *dayOfWeek = [self.dateFormatter stringFromDate:currentDate];
     bool isAllowedNight = (![dayOfWeek isEqual:@"Sat" ] || ![dayOfWeek  isEqual:@"Fri"]);
-    bool isDay = ((hour >= 7) && (hour <= 21));
+    
     
     if (isDay) {
         // It's day time, should we stop checking for location updates? Probably.
