@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <GLKit/GLKMath.h>
 #import "HLLocationManager.h"
 
 @interface HLLocationManager() <CLLocationManagerDelegate>
@@ -18,6 +19,7 @@
 @property (strong, nonatomic) NSDateFormatter *dateFormatter;
 
 @property (strong, nonatomic) NSMutableDictionary *locationsForDays;
+@property BOOL houseLocationFound;
 
 @end
 
@@ -75,14 +77,46 @@
         }
     }
     
-    NSLog(@"All Locations: %@", allLocationObjects);
+    // We want to get the center point of all coordinates.
+    // Thanks to http://stackoverflow.com/q/6671183/455929 I was able to find the algorithm to get
+    // the centre point of the array of locations.
     
-    NSMutableArray *potentialHouseLocations = [NSMutableArray new];
+    double x = 0;
+    double y = 0;
+    double z = 0;
     
-    // Now that we have a collection of locations, let's see how far apart they all are.
-    for (CLLocation *location in potentialHouseLocations) {
-        NSLog(@"Location: %@", location);
+    for (CLLocation *location in allLocationObjects) {
+        
+        CLLocationCoordinate2D coordinate = location.coordinate;
+        double lat = GLKMathDegreesToRadians(coordinate.latitude);
+        double lon = GLKMathDegreesToRadians(coordinate.longitude);
+        
+        x += cos(lat) * cos(lon);
+        y += cos(lat) * sin(lon);
+        z += sin(lat);
+        
     }
+    
+    x = x / (double)allLocationObjects.count;
+    y = y / (double)allLocationObjects.count;
+    z = z / (double)allLocationObjects.count;
+    
+    double resultLon = atan2(y, x);
+    double resultHyp = sqrt(x * x + y * y);
+    double resultLat = atan2(z, resultHyp);
+    
+    CLLocationCoordinate2D result = CLLocationCoordinate2DMake(GLKMathRadiansToDegrees(resultLat),
+                                                               GLKMathRadiansToDegrees(resultLon));
+    
+    // This result is a best guess, believing that the user is within their house at the times we are
+    // getting the location data in locationManager:didUpdateLocations.
+    
+    self.houseLocationFound = YES;
+    self.houseLocation = [[CLLocation alloc] initWithCoordinate:result
+                                                       altitude:0
+                                             horizontalAccuracy:kCLLocationAccuracyHundredMeters
+                                               verticalAccuracy:kCLLocationAccuracyHundredMeters
+                                                      timestamp:[NSDate new]];
     
     if ([self.delegate respondsToSelector:@selector(didDetermineHouseLocation:)]) {
         [self.delegate didDetermineHouseLocation:self.houseLocation];
@@ -103,15 +137,14 @@
     NSInteger hour = [self.calendar component:NSCalendarUnitHour
                                      fromDate:currentDate];
     
-    bool isDay = ((hour >= 7) && (hour <= 21));
+    //    bool isDay = ((hour >= 7) && (hour <= 21));
     bool isNight = ((hour >= 22) || (hour < 7));
     
     NSString *dayOfWeek = [self.dateFormatter stringFromDate:currentDate];
     bool shouldTrackLocation = (![dayOfWeek isEqual:@"Sat" ] &&
                                 ![dayOfWeek  isEqual:@"Fri"] &&
-                                isDay);
-    
-    
+                                isNight);
+  
     if (shouldTrackLocation) {
         
         // Grab the current locations stored in the dictionary by day.
@@ -123,7 +156,7 @@
         }
         
         // Check whether we already have enough data for that day.
-        if ([locationsForDayOfWeek count] >= 20) {
+        if ([locationsForDayOfWeek count] >= 100) {
             // Now we should check whether we have enough days to determine house location.
             if ([[self.locationsForDays allKeys] count] >= 3) {
                 [self stop];
@@ -143,6 +176,15 @@
                                                   forKey:@"kLocationsForDaysObject"];
         [[NSUserDefaults standardUserDefaults] synchronize];
         
+    } else {
+        // Do a check for whether we can determine house location
+        if ([[self.locationsForDays allKeys] count] >= 3) {
+            [self stop];
+            NSLog(@"amount of nights required.");
+            [self determineHouseLocation];
+        } else {
+            NSLog(@"need more nights worth of data!");
+        }
     }
     
 }
