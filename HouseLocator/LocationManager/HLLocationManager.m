@@ -16,7 +16,8 @@
 
 @property (strong, nonatomic) NSCalendar *calendar;
 @property (strong, nonatomic) NSDateFormatter *dateFormatter;
-@property (strong, nonatomic) NSMutableArray *locations;
+
+@property (strong, nonatomic) NSMutableDictionary *locationsForDays;
 
 @end
 
@@ -45,7 +46,12 @@
         self.dateFormatter = [NSDateFormatter new];
         [self.dateFormatter setDateFormat:@"EE"];
         
-        self.locations = [NSMutableArray new];
+        if ([[NSUserDefaults standardUserDefaults] objectForKey:@"kLocationsForDaysObject"]) {
+            NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:@"kLocationsForDaysObject"];
+            self.locationsForDays = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+        } else {
+            self.locationsForDays = [NSMutableDictionary new];
+        }
     }
     
     return self;
@@ -62,15 +68,20 @@
 
 - (void) determineHouseLocation {
     
-    NSLog(@"Locations: %@", self.locations);
+    NSMutableArray *allLocationObjects = [NSMutableArray new];
+    for (NSArray *locationArrayPerDay in [self.locationsForDays allValues]) {
+        for (CLLocation *location in locationArrayPerDay) {
+            [allLocationObjects addObject:location];
+        }
+    }
+    
+    NSLog(@"All Locations: %@", allLocationObjects);
     
     NSMutableArray *potentialHouseLocations = [NSMutableArray new];
     
-    // We want to get a tally of how many times a location has been sent up, within a range of x feet.
-    for (CLLocation *location in self.locations) {
-        if ([potentialHouseLocations containsObject:location]) {
-            
-        }
+    // Now that we have a collection of locations, let's see how far apart they all are.
+    for (CLLocation *location in potentialHouseLocations) {
+        NSLog(@"Location: %@", location);
     }
     
     if ([self.delegate respondsToSelector:@selector(didDetermineHouseLocation:)]) {
@@ -87,54 +98,53 @@
     // First is what was recommended, time based option, ie late at night. We only want to record
     // updates then.
     
-    // Implementation for background tracking. No persistence...
+    // Implementation for background tracking. Persistence happening now.
     NSDate *currentDate = [NSDate new];
     NSInteger hour = [self.calendar component:NSCalendarUnitHour
                                      fromDate:currentDate];
     
     bool isDay = ((hour >= 7) && (hour <= 21));
     bool isNight = ((hour >= 22) || (hour < 7));
-    if (isDay) {
-        [self.locations addObject:[locations lastObject]];
-    }
     
-    // So now that we're getting location updates at night time and just adding them to the array,
-    // we should probably start filtering them to guess the users house location.
-    if ([self.locations count] > 20) {
-        [self stop];
-        NSLog(@"We should have enough location objects to determine house...");
-        [self determineHouseLocation];
-    } else {
-        if ([self.delegate respondsToSelector:@selector(didDetermineHouseLocation:)]) {
-            [self.delegate didDetermineHouseLocation:nil];
+    NSString *dayOfWeek = [self.dateFormatter stringFromDate:currentDate];
+    bool shouldTrackLocation = (![dayOfWeek isEqual:@"Sat" ] &&
+                                ![dayOfWeek  isEqual:@"Fri"] &&
+                                isDay);
+    
+    
+    if (shouldTrackLocation) {
+        
+        // Grab the current locations stored in the dictionary by day.
+        NSMutableArray *locationsForDayOfWeek;
+        if (![self.locationsForDays objectForKey:dayOfWeek]) {
+            locationsForDayOfWeek = [NSMutableArray new];
+        } else {
+            locationsForDayOfWeek = [self.locationsForDays objectForKey:dayOfWeek];
         }
+        
+        // Check whether we already have enough data for that day.
+        if ([locationsForDayOfWeek count] >= 20) {
+            // Now we should check whether we have enough days to determine house location.
+            if ([[self.locationsForDays allKeys] count] >= 3) {
+                [self stop];
+                NSLog(@"amount of nights required.");
+                [self determineHouseLocation];
+            } else {
+                NSLog(@"need more nights worth of data!");
+            }
+        } else {
+            NSLog(@"Should track location: %@", [locations lastObject]);
+            [locationsForDayOfWeek addObject:[locations lastObject]];
+            [self.locationsForDays setObject:locationsForDayOfWeek forKey:dayOfWeek];
+        }
+        
+        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.locationsForDays];
+        [[NSUserDefaults standardUserDefaults] setObject:data
+                                                  forKey:@"kLocationsForDaysObject"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
     }
     
-    // Second option would to be only check on certain days at night. So during the week, not
-    // necessarily Fridays or Saturdays.
-    
-    /*
-     NSString *dayOfWeek = [self.dateFormatter stringFromDate:currentDate];
-    bool isAllowedNight = (![dayOfWeek isEqual:@"Sat" ] || ![dayOfWeek  isEqual:@"Fri"]);
-    
-    
-    if (isDay) {
-        // It's day time, should we stop checking for location updates? Probably.
-        [self stop];
-    } else if (isNight && isAllowedNight) {
-        // It's night time during the week, we should save the last location in the locations array.
-        [self stop];
-        self.houseLocation = [locations lastObject];
-    } else {
-       // Handle this gracefully.
-    }
-     */
-    
-    
-    
-    if (UIApplication.sharedApplication.applicationState == UIApplicationStateBackground) {
-        NSLog(@"App is backgrounded. New location is %@", [locations lastObject]);
-    }
 }
 
 - (void) locationManager:(CLLocationManager *)manager
@@ -155,6 +165,7 @@
         [self.locationManager stopUpdatingLocation];
     } else {
         // We are good to go!
+        [self.locationManager startUpdatingLocation];
     }
     
 }

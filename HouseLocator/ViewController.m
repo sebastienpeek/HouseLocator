@@ -28,11 +28,15 @@
     self.manager = [HLLocationManager shared];
     [self.manager setDelegate:self];
     
+}
+
+- (void) viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
     [self.manager start];
     [self.activityIndicator startAnimating];
     
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
